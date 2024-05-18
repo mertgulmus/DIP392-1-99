@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
+
+import { Player } from '../../util/Player';
 import './History.style.scss';
 
 const History = () => {
     const [history, setHistory] = useState([]);
 
     useEffect(() => {
-        const sessionHistory = JSON.parse(localStorage.getItem('sessionHistory')) || [];
+        const sessionHistory = new Player().getGameHistory();
         setHistory(sessionHistory);
     }, []);
 
@@ -19,7 +21,8 @@ const History = () => {
                     {history.map((session, index) => (
                         <li key={index}>
                             <p><strong>Session ID:</strong> {session.sessionID}</p>
-                            <p><strong>Game Result:</strong> { session.gameResult === "win" ? `${session.playerID} won` : "draw" }</p>
+                            <p><strong>Player:</strong> {session.playerID}</p>
+                            <p><strong>Game Result:</strong> { session.gameResult }</p>
                             <p><strong>Date:</strong> {new Date(session.date).toLocaleString()}</p>
                         </li>
                     ))}

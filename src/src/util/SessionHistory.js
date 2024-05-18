@@ -1,15 +1,14 @@
-// SessionHistory.js
 export class SessionHistory {
-    constructor() {
-        this.sessionID = null;
-        this.playerID = null;
-        this.gameResult = null;
+    constructor(sessionID, playerID, gameResult) {
+        this.sessionID = sessionID;
+        this.playerID = playerID;
+        this.gameResult = gameResult;
         this.date = new Date();
+
+        this.saveGameSession();
     }
 
     saveGameSession() {
-        // Save the session to the database or any storage
-        // For simplicity, let's assume we're saving to local storage
         const sessionData = {
             sessionID: this.sessionID,
             playerID: this.playerID,

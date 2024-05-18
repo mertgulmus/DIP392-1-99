@@ -19,6 +19,7 @@ class Header extends PureComponent {
                     { this.renderLink('/', 'Home') }
                     { this.renderLink('/play', 'Play') }
                     { this.renderLink('/history', 'History') }
+                    { this.renderLogout() }
                 </ul>
             </nav>
         );
@@ -37,6 +38,23 @@ class Header extends PureComponent {
                 <h1 className='title'>Connect4</h1>
             </div>
         )
+    }
+
+    handleLogout = () => {
+        localStorage.removeItem('username');
+        window.location.reload();
+    }
+
+    renderLogout() {
+        if (!localStorage.getItem('username')) {
+            return null;
+        }
+
+        return (
+            <li>
+                <Link to="" onClick={ this.handleLogout }>Logout</Link>
+            </li>
+        );
     }
 
     render() {
