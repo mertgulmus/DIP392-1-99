@@ -2,7 +2,7 @@ import './Header.style.scss';
 
 function Header () {
   return (
-    <header>
+    <header className='Header'>
       <h1>Connect4</h1>
     </header>
   )
