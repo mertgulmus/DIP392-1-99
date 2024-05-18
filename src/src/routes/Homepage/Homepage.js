@@ -11,8 +11,6 @@ const Homepage = () => {
     };
 
     const renderLogin = () => {
-        console.log(localStorage);
-
         if (localStorage.getItem('username')) {
             const player = new Player();
             const displayName = player.displayName;

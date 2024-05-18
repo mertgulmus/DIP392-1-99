@@ -113,10 +113,6 @@ export class GameSession {
         const player = new Player();
         if (!player.isLogged()) return;
 
-        console.log(
-            `Game ${ this.gameID } ended with ${ result === 'win' ? `${ this.currentPlayer } won` : 'draw' }`
-        )
-
         new SessionHistory(
             this.gameID,
             player.playerID,
