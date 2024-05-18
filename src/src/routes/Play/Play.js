@@ -10,7 +10,8 @@ export class Play extends PureComponent {
             cols: 7,
             board: Array(6).fill(Array(7).fill(null)),
             currentPlayer: 'red',
-            winner: null
+            winner: null,
+            isDraw: false
         };
     }
 
@@ -53,6 +54,17 @@ export class Play extends PureComponent {
         return null;
     }
 
+    checkDraw(board) {
+        for (let row = 0; row < board.length; row++) {
+            for (let col = 0; col < board[row].length; col++) {
+                if (board[row][col] === null) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     handleDrop = (colIndex) => {
         const { rows, board, currentPlayer, winner } = this.state;
         if (winner) return;
@@ -62,10 +74,12 @@ export class Play extends PureComponent {
             if (!newBoard[rowIndex][colIndex]) {
                 newBoard[rowIndex][colIndex] = currentPlayer;
                 const gameWinner = this.checkWinner(newBoard);
+                const isDraw = !gameWinner && this.checkDraw(newBoard);
                 this.setState({
                     board: newBoard,
                     currentPlayer: currentPlayer === 'red' ? 'yellow' : 'red',
-                    winner: gameWinner
+                    winner: gameWinner,
+                    isDraw: isDraw
                 });
                 return;
             }
@@ -76,19 +90,22 @@ export class Play extends PureComponent {
         if (window.confirm("Are you sure you want to reset the game?")) {
             this.setState({
                 board: Array(6).fill(Array(7).fill(null)),
-                winner: null
+                winner: null,
+                isDraw: false
             });
         }
     }
 
     render() {
-        const { board, winner } = this.state;
+        const { board, winner, isDraw, currentPlayer } = this.state;
         return (
             <div className="Play">
                 <h1>Game board</h1>
                 <button onClick={ this.handleResetConfirmation }>Reset</button>
 
-                { winner && <span>{winner} wins!</span>}
+                { !winner && !isDraw && <span>Current player: { currentPlayer }</span> }
+                { winner && <span>{ winner } wins!</span>}
+                { !winner && isDraw && <span>It's a draw!</span>}
                 <div className="BoardWrapper">
                     <Board board={ board } onDrop={ this.handleDrop } />
                 </div>
