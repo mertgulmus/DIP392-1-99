@@ -18,6 +18,7 @@ class Header extends PureComponent {
                 <ul>
                     { this.renderLink('/', 'Home') }
                     { this.renderLink('/play', 'Play') }
+                    { this.renderLink('/history', 'History') }
                 </ul>
             </nav>
         );
