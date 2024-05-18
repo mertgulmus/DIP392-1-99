@@ -1,0 +1,32 @@
+.session-history {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+
+        li {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+
+            p {
+                margin: 5px 0;
+            }
+
+            strong {
+                display: inline-block;
+                width: 100px;
+            }
+        }
+    }
+}

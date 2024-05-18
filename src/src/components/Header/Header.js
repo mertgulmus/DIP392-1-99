@@ -18,15 +18,31 @@ class Header extends PureComponent {
                 <ul>
                     { this.renderLink('/', 'Home') }
                     { this.renderLink('/play', 'Play') }
+                    { this.renderLink('/history', 'History') }
                 </ul>
             </nav>
         );
     }
 
+    renderLogo() {
+        return (
+            <img src='logo_transparent.png' alt='Connect4' className='logo' />
+        )
+    }
+
+    renderTitle() {
+        return (
+            <div className='title'>
+                { this.renderLogo() }
+                <h1 className='title'>Connect4</h1>
+            </div>
+        )
+    }
+
     render() {
         return (
         <header className='Header'>
-            <h1>Connect4</h1>
+            { this.renderTitle() }
             { this.renderNavigation() }
         </header>
         );
