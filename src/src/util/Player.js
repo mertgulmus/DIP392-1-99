@@ -1,11 +1,31 @@
 export class Player {
     constructor() {
-        this.playerID = null;
-        this.gameHistory = [];
-        this.displayName = null;
+        this.playerID = localStorage.getItem('username');
+        this.gameHistory = this.getGameHistory();
+        this.displayName = this.retrieveDisplayName();
     }
 
-    makeMove() {
-        // Make a move
+    getGameHistory() {
+        const gameHistory = JSON.parse(localStorage.getItem('sessionHistory')) || [];
+
+        this.gameHistory = gameHistory.filter(game => game.playerID === this.playerID);
+
+        return this.gameHistory;
+    }
+
+    changeDisplayName(newName) {
+        this.displayName = newName;
+    }
+
+    retrieveDisplayName() {
+        return localStorage.getItem([this.playerID]);
+    }
+
+    savePlayerProfile() {
+        localStorage.setItem([this.playerID], this.displayName);
+    }
+
+    isLogged() {
+        return this.playerID !== null;
     }
 }

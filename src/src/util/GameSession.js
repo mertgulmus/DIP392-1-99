@@ -1,4 +1,4 @@
-// GameSession.js
+import { Player } from './Player';
 import { SessionHistory } from './SessionHistory';
 
 export class GameSession {
@@ -110,11 +110,14 @@ export class GameSession {
     }
 
     saveSession(result) {
-        const sessionHistory = new SessionHistory();
-        sessionHistory.sessionID = this.gameID;
-        sessionHistory.playerID = this.currentPlayer; // Assuming the currentPlayer is the one who made the winning/drawing move
-        sessionHistory.gameResult = result;
-        sessionHistory.saveGameSession();
+        const player = new Player();
+        if (!player.isLogged()) return;
+
+        new SessionHistory(
+            this.gameID,
+            player.playerID,
+            result === 'win' ? `${ this.currentPlayer } won` : 'draw'
+        );
     }
 
     resetGame() {
