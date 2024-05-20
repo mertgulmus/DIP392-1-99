@@ -1,5 +1,7 @@
 # Connect4
 
+https://docs.google.com/document/d/1iLQIkEYqwgC60K-vnLzXhjbHRzfQ2b_iokXgygbrm9M/edit#heading=h.2w8hfyibz1ar
+
 ## Demo
 
 A live demo can be found at this link: https://cottony-clouds.000webhostapp.com/
