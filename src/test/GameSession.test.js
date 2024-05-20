@@ -9,6 +9,7 @@ const getSessionHistoryFromLocalStorage = () => {
 };
 
 test('GameSession saves to SessionHistory correctly', () => {
+    localStorage.setItem('username', 'test');
     const gameSession = new GameSession();
     gameSession.startGame();
 
@@ -26,6 +27,26 @@ test('GameSession saves to SessionHistory correctly', () => {
 
     const savedSession = sessionHistory[0];
     expect(savedSession.sessionID).toBe(gameSession.gameID);
-    expect(savedSession.playerID).toBe('red');
-    expect(savedSession.gameResult).toBe('win');
-});
+    expect(savedSession.playerID).toBe('test');
+    expect(savedSession.gameResult).toBe('red won');
+}
+);
+describe('GameSession', () => {
+    let game;
+  
+    beforeEach(() => {
+      game = new GameSession();
+    });
+  
+    test('should start a game', () => {
+      game.startGame();
+      expect(game.status).toBe('started');
+      expect(game.startTime).not.toBeNull();
+    });
+  
+    test('should alternate turns', () => {
+      const initialPlayer = game.currentPlayer;
+      game.alternateTurn();
+      expect(game.currentPlayer).not.toBe(initialPlayer);
+    });
+  });
