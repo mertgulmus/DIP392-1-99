@@ -4,7 +4,7 @@ https://docs.google.com/document/d/1iLQIkEYqwgC60K-vnLzXhjbHRzfQ2b_iokXgygbrm9M/
 
 ## Demo
 
-A live demo can be found at this link: https://cottony-clouds.000webhostapp.com/
+A live demo can be found at this link: [dip392-cd655.web.app](https://dip392-cd655.web.app/)
 
 ## Implementation Details
 
